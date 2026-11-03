@@ -33,25 +33,23 @@
   <nav id="places" class="hidden"></nav>
 
   <div id="help" class="hidden">
-    <p><b>W A S D</b> or the <b>arrow keys</b> to walk. Hold <b>Shift</b> to go faster.</p>
-    <p><b>Click and drag</b> to look around.</p>
-    <p><b>Click a shop</b> (or a button at the bottom) and you'll walk there and go in.</p>
-    <p><b>Esc</b> leaves a shop.</p>
-    <button class="btn" id="help-ok">Got it</button>
+    <p><b>WASD</b> or <b>arrows</b>: walk (<b>Shift</b> to run)</p>
+    <p><b>Drag</b>: look around</p>
+    <p><b>Click a shop</b>: go in. <b>Esc</b>: leave</p>
+    <button class="btn" id="help-ok">OK</button>
   </div>
 
   <div id="intro">
     <div class="intro-card">
       <div id="intro-content"></div>
       <button id="intro-go" class="btn big">Walk in</button>
-      <p class="intro-small">Sound on is better. You can mute it in the top right.</p>
     </div>
   </div>
 
   <div id="panel" class="hidden" role="dialog" aria-modal="true">
     <div class="panel-inner">
       <header class="panel-head">
-        <button class="back" id="panel-back">← back to the street</button>
+        <button class="back" id="panel-back">← Back</button>
         <div class="panel-title"><span class="jp" id="panel-jp"></span><span class="en" id="panel-en"></span></div>
       </header>
       <div id="panel-body"></div>
@@ -60,7 +58,7 @@
 
   <div id="toast" class="hidden"></div>
 
-  <noscript>This needs JavaScript turned on, Dad.</noscript>
+  <noscript>Needs JavaScript.</noscript>
   <script type="module" src="js/main.js"></script>
 </body>
 </html>

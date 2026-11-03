@@ -137,7 +137,7 @@ function checkNear() {
   if (best !== nearShop) {
     nearShop = best;
     if (best && !isOpen() && !controls.autoWalking) {
-      prompt.innerHTML = `Press <kbd>E</kbd> or click to go into <b>${best.name}</b>`;
+      prompt.innerHTML = `<kbd>E</kbd> ${best.name}`;
       prompt.classList.remove('hidden');
     } else prompt.classList.add('hidden');
   }
@@ -159,9 +159,8 @@ function refreshSky() {
   rain.setIntensity(rainK);
   setRain(rainK);
   const t = new Date().toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' }).toLowerCase();
-  let txt = `${t} · raining on the street`;
-  if (weather) txt += weather.raining ? ` · ${weather.temp}°F and raining at your place too` : weather.snowing ? ` · ${weather.temp}°F and snowing at your place, go skiing` : ` · ${weather.temp}°F and dry at your place`;
-  if (late) txt += ' · most places are closed';
+  let txt = t;
+  if (weather) txt += ` · ${weather.temp}°F${weather.raining ? ', raining at home' : weather.snowing ? ', snowing at home' : ''}`;
   hudTime.textContent = txt;
 }
 async function checkWeather() {
@@ -197,8 +196,7 @@ if (firstTime) {
   introContent.innerHTML = `<h1 style="margin-bottom:28px">Happy birthday</h1>`;
   document.querySelector('.intro-small')?.remove();
 } else {
-  const hi = ['still raining. come on in.', 'your stool is open.', 'welcome back.', 'the rain never stopped.'];
-  introContent.innerHTML = `<div class="jp-title">雨音通り</div><h2 style="margin-top:6px">${hi[Math.floor(Math.random() * hi.length)]}</h2>`;
+  introContent.innerHTML = `<div class="jp-title" style="margin-bottom:24px">雨音通り</div>`;
 }
 document.getElementById('intro-go').addEventListener('click', () => {
   started = true;

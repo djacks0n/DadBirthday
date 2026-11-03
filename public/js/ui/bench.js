@@ -13,8 +13,7 @@ export function buildBench(body) {
   });
 
   const win = h('div', { class: 'window' }, h('div', { class: 'idle' }, h('div', {},
-    h('div', { style: 'font-size:22px;font-weight:700;margin-bottom:6px' }, 'Sit down. Pick somewhere.'),
-    h('div', { class: 'note', style: 'color:#9fd6ff' }, "every pin is a rain walk. no talking, just rain and people with umbrellas. tokyo has the most"),
+    h('div', { style: 'font-size:22px;font-weight:700' }, 'Pick a city'),
   )), h('div', { class: 'drops' }));
   const list = h('div', { class: 'walks' });
   const label = h('div', { style: 'font-size:14px;margin-top:10px;opacity:.85;min-height:20px' });
@@ -38,7 +37,7 @@ export function buildBench(body) {
     win.innerHTML = '';
     win.append(h('iframe', { src: ytEmbed(w.id), allow: 'autoplay; encrypted-media; picture-in-picture; fullscreen', allowfullscreen: true, title: w.city + ' rain walk' }));
     label.innerHTML = '';
-    label.append(`${w.city}, ${w.sub.toLowerCase()}.  `, h('a', { href: ytWatch(w.id), target: '_blank', rel: 'noopener', style: 'color:#9fd6ff' }, 'open on YouTube ↗'));
+    label.append(`${w.city}: ${w.sub}  `, h('a', { href: ytWatch(w.id), target: '_blank', rel: 'noopener', style: 'color:#9fd6ff' }, 'open on YouTube ↗'));
     list.querySelectorAll('.walk').forEach(b => b.classList.toggle('on', b.dataset.id === w.id));
   }
 
@@ -62,8 +61,8 @@ export function buildBench(body) {
 
   const tokyoI = cities.findIndex(c => c.city === 'Tokyo');
   const random = h('div', { style: 'display:flex;gap:8px;flex-wrap:wrap;margin-top:10px' },
-    h('button', { class: 'btn', style: 'background:#9fd6ff;color:#0a1220', onclick: () => pickCity(tokyoI) }, 'Tokyo in the rain'),
-    h('button', { class: 'btn ghost', onclick: () => pickCity(Math.floor(Math.random() * cities.length)) }, 'Surprise me'),
+    h('button', { class: 'btn', style: 'background:#9fd6ff;color:#0a1220', onclick: () => pickCity(tokyoI) }, 'Tokyo'),
+    h('button', { class: 'btn ghost', onclick: () => pickCity(Math.floor(Math.random() * cities.length)) }, 'Random'),
   );
 
   body.append(h('div', { class: 'bench-grid' },

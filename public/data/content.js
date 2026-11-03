@@ -1,76 +1,68 @@
 // all the words and picks on the site live here so they're easy to change
 
 export const BARTENDER_HI = [
-  "Ah, the fart smeller's back. The usual?",
-  "Evening. Your Glengoyne's right where you left it.",
-  "Still raining. Good. Sit down.",
-  "I ordered more ouzo. Nobody else drinks it, just so you know.",
-  "Sharp as ever, I see. Like a bowling ball.",
-  "You again. Pick a stool, any stool.",
-  "Happy birthday. Don't tell anyone how old you are, I won't either.",
+  "The fart smeller's back.",
+  "Your Glengoyne's where you left it.",
+  "Still raining.",
+  "Got more ouzo in.",
+  "Sharp as a bowling ball, as always.",
 ];
 
 // moods for "what kind of night is it?"
 export const MOODS = [
   {
     id: 'rain', label: 'Rainy night',
-    say: "Rain like this needs something warm and sherried. Nothing smoky.",
     picks: [
-      { name: 'GlenDronach 12', where: 'Highlands, Scotland', note: "Aged in sherry casks like the Glengoyne, but heavier. Raisins and dark fruit." },
-      { name: 'Yamazaki 12', where: 'Osaka, Japan', note: "From Japan's first malt distillery. Soft and fruity, good for watching rain walks." },
-      { name: 'Glenfarclas 15', where: 'Speyside, Scotland', note: "Family-run and all about sherry casks. Tastes like a fireplace with no smoke." },
+      { name: 'GlenDronach 12', where: 'Highlands, Scotland', note: "Sherry casks, dark fruit." },
+      { name: 'Yamazaki 12', where: 'Osaka, Japan', note: "Soft and fruity." },
+      { name: 'Glenfarclas 15', where: 'Speyside, Scotland', note: "All sherry, no smoke." },
     ],
   },
   {
-    id: 'ski', label: 'Just got off the slopes',
-    say: "Cold hands? Here's something to warm you back up.",
+    id: 'ski', label: 'After skiing',
     picks: [
-      { name: 'Balvenie DoubleWood 12', where: 'Speyside, Scotland', note: "Bourbon cask then sherry cask. Honey and vanilla, really easy to drink." },
-      { name: 'Hibiki Japanese Harmony', where: 'Japan', note: "A smooth Japanese blend. Basically the après-ski whisky." },
-      { name: 'Talisker 10', where: 'Isle of Skye, Scotland', note: "A little smoke and pepper. Tastes like the coast in bad weather, which you'd like." },
+      { name: 'Balvenie DoubleWood 12', where: 'Speyside, Scotland', note: "Honey and vanilla." },
+      { name: 'Hibiki Japanese Harmony', where: 'Japan', note: "Smooth Japanese blend." },
+      { name: 'Talisker 10', where: 'Isle of Skye, Scotland', note: "A little smoke and pepper." },
     ],
   },
   {
     id: 'party', label: 'Celebrating',
-    say: "You only turn sixty once. Go big.",
     picks: [
-      { name: 'Glengoyne 18', where: 'Highlands, Scotland', note: "Your Glengoyne, but six more years in the barrel. Seems right for a birthday." },
-      { name: "Aberlour A'bunadh", where: 'Speyside, Scotland', note: "Cask strength and all sherry. Add a little water or it'll knock you over." },
-      { name: 'Yamazaki 12', where: 'Osaka, Japan', note: "If you're going Japanese tonight, this is the one." },
+      { name: 'Glengoyne 18', where: 'Highlands, Scotland', note: "Your Glengoyne, six years older." },
+      { name: "Aberlour A'bunadh", where: 'Speyside, Scotland', note: "Cask strength. Add water." },
+      { name: 'Yamazaki 12', where: 'Osaka, Japan', note: "Soft and fruity." },
     ],
   },
   {
     id: 'new', label: 'Something new',
-    say: "Okay, let's get you out of your comfort zone. A little.",
     picks: [
-      { name: 'Nikka Coffey Grain', where: 'Japan', note: "Grain whisky from an old Coffey still. Sweet, like vanilla and corn. Different from anything on your shelf." },
-      { name: 'Hakushu 12', where: 'Yamanashi, Japan', note: "The distillery is in a forest. Green and fresh with a tiny bit of smoke." },
-      { name: 'Nikka Miyagikyo', where: 'Sendai, Japan', note: "Soft and fruity Japanese single malt. Kind of a cousin of the Glengoyne." },
+      { name: 'Nikka Coffey Grain', where: 'Japan', note: "Sweet, vanilla, corn." },
+      { name: 'Hakushu 12', where: 'Yamanashi, Japan', note: "Fresh, a little smoke." },
+      { name: 'Nikka Miyagikyo', where: 'Sendai, Japan', note: "Soft and fruity." },
     ],
   },
   {
-    id: 'smoke', label: 'Feeling brave (smoke)',
-    say: "I know you don't usually go smoky. If you're going to try it, try it here.",
+    id: 'smoke', label: 'Smoky',
     picks: [
-      { name: 'Talisker 10', where: 'Isle of Skye, Scotland', note: "The gentle way in. Smoke, salt, pepper." },
-      { name: 'Lagavulin 16', where: 'Islay, Scotland', note: "The deep end. Tastes like a campfire on a beach. You'll love it or hate it." },
+      { name: 'Talisker 10', where: 'Isle of Skye, Scotland', note: "Smoke, salt, pepper." },
+      { name: 'Lagavulin 16', where: 'Islay, Scotland', note: "Very smoky." },
     ],
   },
   {
-    id: 'ouzo', label: 'Ouzo kind of night',
-    say: "Fine. I keep it in the back just for you.",
+    id: 'ouzo', label: 'Ouzo',
     picks: [
-      { name: 'Plomari Ouzo', where: 'Lesvos, Greece', note: "Classic. Add water and watch it go cloudy." },
-      { name: 'Ouzo 12', where: 'Greece', note: "The one every Greek restaurant has." },
-      { name: 'Ricard Pastis', where: 'France', note: "Ouzo's French cousin. Same anise thing, same cloudy trick." },
+      { name: 'Plomari Ouzo', where: 'Lesvos, Greece', note: "The classic." },
+      { name: 'Ouzo 12', where: 'Greece', note: "The standard." },
+      { name: 'Ricard Pastis', where: 'France', note: "French cousin of ouzo." },
     ],
   },
 ];
 
 // bottles already on the shelf the first time he walks in
 export const STARTER_BOTTLES = [
-  { name: 'Glengoyne', notes: "Your bottle. Always here.", rating: 5, color: '#c98a3a', starter: true },
-  { name: 'Ouzo', notes: "Nobody else drinks this. It's yours.", rating: 5, color: '#dfe8ea', starter: true },
+  { name: 'Glengoyne', notes: "", rating: 5, color: '#c98a3a', starter: true },
+  { name: 'Ouzo', notes: "", rating: 5, color: '#dfe8ea', starter: true },
 ];
 
 // omikuji levels (real ones go from great blessing down to bad luck)
@@ -80,7 +72,7 @@ export const FORTUNES = [
   { kanji: '吉', en: 'Blessing', w: 3 },
   { kanji: '小吉', en: 'Small blessing', w: 3 },
   { kanji: '末吉', en: 'Future blessing', w: 2 },
-  { kanji: '凶', en: 'Bad luck', w: 1, note: "Bad luck. In Japan you tie these to the rack and leave them at the shrine so the bad luck stays here. So do that." },
+  { kanji: '凶', en: 'Bad luck', w: 1, note: "Bad luck. Tie it to the rack and leave it here." },
 ];
 
 // quotes in the omikuji box. attributions checked, translations are the common ones
@@ -149,32 +141,31 @@ export const RAIN_WALKS = [
 // departure board
 export const DESTINATIONS = [
   { id: 'laurel', name: 'Laurel Fork', jp: 'ローレルフォーク', kind: 'ours', time: '—', where: 'West Virginia',
-    text: "Where we got lost. Also where you showed me multiflora rose, which kind of decided what I want to do with my life. No big deal." },
+    text: "Where we got lost." },
   { id: 'tmb', name: 'Tour du Mont Blanc', jp: 'モンブラン', kind: 'ours', time: '—', where: 'France, Italy, Switzerland',
-    text: "105 miles around Mont Blanc through three countries. Still the longest trip." },
+    text: "105 miles, three countries." },
   { id: 'niseko', name: 'Niseko', jp: 'ニセコ', kind: 'ski', where: 'Hokkaido',
-    text: "The powder place. Cold air comes off Siberia across the sea and dumps super light snow on it all winter." },
+    text: "Famous for powder." },
   { id: 'hakuba', name: 'Hakuba', jp: '白馬', kind: 'ski', where: 'Nagano',
-    text: "Big Alps-looking mountains. They held ski events here for the 1998 Olympics." },
+    text: "1998 Olympic ski events." },
   { id: 'nozawa', name: 'Nozawa Onsen', jp: '野沢温泉', kind: 'ski', where: 'Nagano',
-    text: "Old hot spring village with a ski hill above it. Ski all day, then go sit in a free public bath." },
+    text: "Hot spring village with a ski hill." },
   { id: 'zao', name: 'Zao Onsen', jp: '蔵王温泉', kind: 'ski', where: 'Yamagata',
-    text: "Famous for the snow monsters, which are trees so covered in ice they turn into weird giant shapes." },
+    text: "Snow monsters (ice-covered trees)." },
   { id: 'kumano', name: 'Kumano Kodo', jp: '熊野古道', kind: 'hike', where: 'Wakayama',
-    text: "Really old pilgrimage trails through cedar forest. UNESCO site. It's like the Japanese Camino." },
+    text: "Old pilgrimage trails through cedar forest." },
   { id: 'nakasendo', name: 'Magome to Tsumago', jp: '馬籠・妻籠', kind: 'hike', where: 'Nakasendo, Nagano',
-    text: "About 8 km on an old samurai-era road between two old post towns that still look like it's the 1800s." },
+    text: "8 km on an old post road." },
   { id: 'fuji', name: 'Mt. Fuji', jp: '富士山', kind: 'hike', where: 'Yamanashi / Shizuoka',
-    text: "3,776 m. You can only really climb it in summer. Most people go up overnight to see sunrise from the top." },
+    text: "3,776 m. Summer only." },
   { id: 'kamikochi', name: 'Kamikochi', jp: '上高地', kind: 'hike', where: 'Northern Alps',
-    text: "Mountain valley with a crazy clear river. No private cars allowed, you take a bus in." },
+    text: "Alpine valley, no cars." },
   { id: 'yakushima', name: 'Yakushima', jp: '屋久島', kind: 'hike', where: 'Kagoshima',
-    text: "Island with cedar trees thousands of years old. There's a saying it rains 35 days a month there. Basically built for you." },
+    text: "Ancient cedars. Rains constantly." },
 ];
 
 export const BIRTHDAY = {
   line1: 'Happy 60th',
   line2: 'to the sharpest bowling ball I know',
-  body: "I made you a street. It's always raining here. Walk around, go into places, and come back whenever. Your stuff saves.",
   sign: '- Daniel',
 };

@@ -4,11 +4,11 @@ import * as S from '../state.js';
 import { crash, rumble } from '../audio.js';
 
 const LINES = {
-  10: ['STRIKE. Still sharp.', 'Strike. The ball is proud of you.', 'Ten for ten. Sixty years of practice paying off.'],
-  hi: ['Not bad at all.', 'Respectable. For a bowling ball.', 'Close. Go again.'],
-  mid: ['Eh.', 'Some pins fell. Counts.', 'Middle of the road, like the yellow line out there.'],
-  lo: ['That was a warmup.', 'The lane is wet. Blame the rain.', 'One more. Nobody saw that.'],
-  0: ['Gutter. Sharp as a bowling ball, that one.', 'Gutter ball. Happens to the best of us. Mostly to you.', 'Zero. Bold strategy.'],
+  10: ['Strike.'],
+  hi: ['Close.'],
+  mid: ['Eh.'],
+  lo: ['Warmup.'],
+  0: ['Gutter. Sharp as a bowling ball.'],
 };
 const pickLine = a => a[Math.floor(Math.random() * a.length)];
 
@@ -16,13 +16,12 @@ export function buildBowling(body) {
   const st = S.get();
   const canvas = h('canvas', { id: 'lane', width: 360, height: 600 });
   const score = h('div', { class: 'score-big' }, '-');
-  const msg = h('div', { style: 'font-size:17px;min-height:48px' }, 'Move your mouse to line up, then click to throw.');
+  const msg = h('div', { style: 'font-size:17px;min-height:48px' }, 'Aim with the mouse, click to throw.');
   const best = h('div', { style: 'font-size:14px;opacity:.8' });
   const updBest = () => { const b = S.get().bowling; best.textContent = `Best: ${b.best} · Throws: ${b.games}`; };
   updBest();
 
   const side = h('div', {},
-    h('div', { class: 'note', style: 'margin-bottom:8px' }, 'your ball:'),
     h('div', { class: 'ball-rack' },
       h('div', { class: 'ball', style: 'background:radial-gradient(circle at 35% 30%, #ff9ad8, #c0207a 55%, #4a0830)' }, h('span', { class: 'tagb' }, 'sharpest one here')),
     ),
@@ -131,9 +130,8 @@ export function buildBowling(body) {
     msg.textContent = pickLine(line);
     S.update(s => { s.bowling.games++; if (n > s.bowling.best) s.bowling.best = n; });
     updBest();
-    if (n === 10 && S.get().bowling.games === 1) toast('First throw strike? Okay.');
     done = true;
-    msg.append(h('div', { style: 'font-size:13px;opacity:.7;margin-top:4px' }, 'click the lane to go again'));
+    msg.append(h('div', { style: 'font-size:13px;opacity:.7;margin-top:4px' }, 'click to go again'));
   }
 
   canvas.addEventListener('pointermove', e => {
@@ -141,7 +139,7 @@ export function buildBowling(body) {
     aimX = Math.max(LANE_L - 8, Math.min(LANE_R + 8, (e.clientX - r.left) * (W / r.width)));
   });
   canvas.addEventListener('click', () => {
-    if (done) { done = false; rack(); score.textContent = '-'; msg.textContent = 'Line it up.'; return; }
+    if (done) { done = false; rack(); score.textContent = '-'; msg.textContent = ''; return; }
     if (ball || settleT) return;
     const hook = (Math.random() - 0.5) * 0.03 + (aimX - W / 2) * -0.00012;
     ball = { x: aimX, y: H - 50, vx: (Math.random() - 0.5) * 0.4, vy: -9.5, hook };

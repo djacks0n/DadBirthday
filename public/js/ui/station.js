@@ -8,12 +8,11 @@ const KIND = { ski: 'SKI', hike: 'HIKE', ours: 'US', mine: 'YOURS' };
 
 export function buildStation(body) {
   chime();
-  body.append(h('p', { style: 'margin:0 0 12px' }, h('span', { class: 'note' }, "pick a train. "), "Mark where you've been and where you still want to go. There are a couple of ours on here too."));
   const filters = h('div', { style: 'display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px' });
   const board = h('div', { class: 'board' });
   const cardSlot = h('div');
   let filter = 'all';
-  [['all', 'all trains'], ['ski', 'ski'], ['hike', 'hike'], ['ours', 'ours'], ['want', 'want to go'], ['been', 'been there']].forEach(([id, label]) => filters.append(h('button', {
+  [['all', 'all'], ['ski', 'ski'], ['hike', 'hike'], ['ours', 'ours'], ['want', 'want to go'], ['been', 'been there']].forEach(([id, label]) => filters.append(h('button', {
     class: 'chip' + (id === 'all' ? ' on' : ''), onclick: e => {
       filter = id;
       filters.querySelectorAll('.chip').forEach(c => c.classList.remove('on'));
@@ -52,7 +51,6 @@ export function buildStation(body) {
     const s = st.trips[d.id];
     const set = v => {
       S.update(x => { if (x.trips[d.id] === v) delete x.trips[d.id]; else x.trips[d.id] = v; });
-      if (v === 'been' && S.get().trips[d.id] === 'been') toast('Checked off. The garden grew.');
       draw(); show(d);
     };
     cardSlot.innerHTML = '';
@@ -82,7 +80,7 @@ export function buildStation(body) {
   body.append(h('h3', {}, 'Add a trip'));
   const name = h('input', { placeholder: 'Where', maxlength: 50 });
   const where = h('input', { placeholder: 'State or country', maxlength: 50 });
-  const note = h('input', { placeholder: 'A note (optional)', maxlength: 200, style: 'flex-basis:100%' });
+  const note = h('input', { placeholder: 'Note', maxlength: 200, style: 'flex-basis:100%' });
   body.append(h('form', {
     class: 'add-trip', onsubmit: e => {
       e.preventDefault();
@@ -92,5 +90,5 @@ export function buildStation(body) {
       name.value = where.value = note.value = '';
       draw(); show({ ...t, kind: 'mine' });
     },
-  }, name, where, note, h('button', { class: 'btn', type: 'submit', style: 'background:#ffb000;color:#111' }, 'Add to the board')));
+  }, name, where, note, h('button', { class: 'btn', type: 'submit', style: 'background:#ffb000;color:#111' }, 'Add')));
 }

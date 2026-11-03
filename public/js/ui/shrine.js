@@ -9,9 +9,9 @@ export function buildShrine(body, startTab = 'kuji') {
   const tabs = h('div', { class: 'tabs' });
   const view = h('div');
   const T = [
-    ['kuji', 'おみくじ  Draw a fortune'],
-    ['rack', 'The rack  (your quotes)'],
-    ['garden', '庭  The garden'],
+    ['kuji', 'おみくじ Fortune'],
+    ['rack', 'Saved'],
+    ['garden', '庭 Garden'],
   ];
   function go(id) {
     tabs.querySelectorAll('.chip').forEach(c => c.classList.toggle('on', c.dataset.id === id));
@@ -28,8 +28,7 @@ export function buildShrine(body, startTab = 'kuji') {
     const box = h('button', { class: 'kuji-box', title: 'Shake it' }, 'おみくじ');
     const out = h('div', {}, h('div', { class: 'fortune', style: 'display:grid;place-items:center;text-align:center' },
       h('div', {},
-        h('p', { style: 'font-size:18px;margin:0 0 8px' }, 'Shake the box. A stick falls out with a number, and that number gets you a fortune.'),
-        h('p', { class: 'note', style: 'margin:0' }, "they're all quotes you'd like. I checked who actually said them."),
+        h('p', { style: 'font-size:18px;margin:0' }, 'Shake the box.'),
       )));
     box.addEventListener('click', () => {
       box.classList.remove('shake'); void box.offsetWidth; box.classList.add('shake');
@@ -56,26 +55,24 @@ export function buildShrine(body, startTab = 'kuji') {
     const tie = h('button', {
       class: 'btn', style: 'background:#d8341c', onclick: () => {
         if (!S.get().savedQuotes.some(s => s.t === q.t)) S.update(s => s.savedQuotes.push({ t: q.t, who: q.who, src: q.src, date: new Date().toISOString() }));
-        tie.disabled = true; tie.textContent = 'Tied to the rack';
+        tie.disabled = true; tie.textContent = 'Kept';
         chime([880, 1174.66]);
-        toast('Tied it to the rack. The garden grew a little.');
       },
-    }, saved ? 'Already on the rack' : 'Tie it to the rack');
+    }, saved ? 'Kept' : 'Keep it');
     if (saved) tie.disabled = true;
     out.innerHTML = '';
     out.append(h('div', { class: 'fortune' },
       h('div', { class: 'level' }, h('span', { class: 'k' }, f.kanji), h('span', {}, f.en), h('span', { class: 'num' }, `第 ${n} 番 · no. ${n}`)),
       h('blockquote', {}, '"' + q.t + '"'),
-      h('div', { class: 'who' }, q.mine ? 'You wrote this one' : [q.who, q.src ? ` · ${q.src}` : ''].join('')),
+      h('div', { class: 'who' }, q.mine ? 'Dad' : [q.who, q.src ? ` · ${q.src}` : ''].join('')),
       f.note ? h('p', { style: 'font-size:14px;margin:0 0 12px' }, f.note) : null,
-      h('div', { class: 'row' }, tie, h('button', { class: 'btn ghost', onclick: () => draw(out) }, 'Eh, draw again')),
+      h('div', { class: 'row' }, tie, h('button', { class: 'btn ghost', onclick: () => draw(out) }, 'Draw again')),
     ));
   }
 
   // ---------- rack ----------
   function drawRack(v) {
     const st = S.get();
-    v.append(h('p', { style: 'margin:0 0 6px' }, "Every fortune you keep gets tied up here. The first three were already yours."));
     const rack = h('div', { class: 'rack' });
     const r = rand(st.savedQuotes.length + 3);
     st.savedQuotes.slice().reverse().forEach(q => {
@@ -90,11 +87,10 @@ export function buildShrine(body, startTab = 'kuji') {
         h('div', { class: 'who' }, q.who + (q.src ? ` · ${q.src}` : '')),
       ));
     });
-    if (!st.savedQuotes.length) rack.append(h('p', { class: 'muted' }, 'Nothing tied up yet.'));
+    if (!st.savedQuotes.length) rack.append(h('p', { class: 'muted' }, 'Nothing saved.'));
     v.append(rack);
-    v.append(h('h3', {}, 'Write your own'));
-    v.append(h('p', { style: 'margin:-4px 0 6px;font-size:14px' }, "Got an aphorism of your own? It goes on the rack and into the omikuji box, so you might draw it later."));
-    const inp = h('input', { placeholder: 'Something you always say', maxlength: 240 });
+    v.append(h('h3', {}, 'Add your own'));
+    const inp = h('input', { placeholder: 'Quote', maxlength: 240 });
     v.append(h('form', {
       class: 'own', onsubmit: e => {
         e.preventDefault();
@@ -106,22 +102,21 @@ export function buildShrine(body, startTab = 'kuji') {
         });
         view.innerHTML = ''; drawRack(view);
       },
-    }, inp, h('button', { class: 'btn', type: 'submit' }, 'Add it')));
+    }, inp, h('button', { class: 'btn', type: 'submit' }, 'Add')));
   }
 
   // ---------- garden ----------
   function drawGarden(v) {
     const top = h('div', { class: 'garden-top' });
     const count = h('div', { class: 'count' });
-    const water = h('button', { class: 'btn', style: 'background:#2c5a3a' }, 'Water it');
+    const water = h('button', { class: 'btn', style: 'background:#2c5a3a' }, 'Water');
     top.append(h('div', {}, h('div', { style: 'font-size:20px;font-weight:700' }, '"We must cultivate our garden."'), h('div', { class: 'muted', style: 'font-size:13px' }, 'Voltaire, Candide')), h('div', { style: 'text-align:right' }, count, water));
     const wrap = h('div', { class: 'garden-wrap' });
     v.append(top, wrap);
-    v.append(h('p', { class: 'note', style: 'margin-top:14px' }, "I planted the first few. it grows when you use the street: log a bottle, keep a fortune, check off a trip, or just come back another day. it never dies so don't stress about it."));
 
     function render(rain = false) {
       const n = S.gardenCount();
-      count.textContent = `${n} things growing`;
+      count.textContent = `${n} plants`;
       wrap.innerHTML = gardenSVG(n, rain);
     }
     render();
@@ -130,7 +125,6 @@ export function buildShrine(body, startTab = 'kuji') {
       render(true);
       setTimeout(() => render(false), 1600);
       const w = S.get().waterings;
-      if (w % 3 === 0) toast('Something new came up.');
     });
   }
 }

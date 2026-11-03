@@ -27,7 +27,6 @@ export function buildBar(body) {
 
   // ----- the shelf -----
   body.append(h('h3', {}, 'Your shelf'));
-  body.append(h('p', { class: 'muted', style: 'margin:-4px 0 10px;font-size:14px' }, "In Japan regulars keep a bottle at their bar with their name on it. These are yours. Click one to see your notes."));
   const shelfWrap = h('div', { class: 'shelf-wrap' });
   const cardSlot = h('div');
   body.append(shelfWrap, cardSlot);
@@ -56,8 +55,8 @@ export function buildBar(body) {
       h('button', { class: 'x', title: 'close', onclick: () => { cardSlot.innerHTML = ''; openCard = null; } }, '×'),
       h('b', { style: 'font-size:18px' }, b.name), ' ',
       h('span', { class: 'stars' }, '🥃'.repeat(b.rating || 0)),
-      h('div', { style: 'font-size:12.5px;opacity:.6;margin:2px 0 8px' }, b.starter ? 'Been here since day one' : 'Added ' + d.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })),
-      h('div', {}, b.notes || h('i', { class: 'muted' }, 'no notes')),
+      b.starter ? null : h('div', { style: 'font-size:12.5px;opacity:.6;margin:2px 0 8px' }, d.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })),
+      b.notes ? h('div', { style: 'margin-top:6px' }, b.notes) : null,
     );
     if (!b.starter) {
       card.append(h('div', { style: 'margin-top:10px' }, h('button', {
@@ -66,7 +65,7 @@ export function buildBar(body) {
           S.update(s => { s.bottles = s.bottles.filter(x => x.id !== b.id); });
           cardSlot.innerHTML = ''; openCard = null; drawShelf();
         },
-      }, 'Take it off the shelf')));
+      }, 'Remove')));
     }
     cardSlot.append(card);
   }
@@ -81,12 +80,11 @@ export function buildBar(body) {
       class: 'chip', onclick: e => {
         moods.querySelectorAll('.chip').forEach(c => c.classList.remove('on'));
         e.currentTarget.classList.add('on');
-        bubble.textContent = m.say;
         picks.innerHTML = '';
         const grid = h('div', { class: 'picks' });
         m.picks.forEach(p => grid.append(h('div', { class: 'pick' },
           h('b', {}, p.name), h('div', { class: 'where' }, p.where), h('p', {}, p.note),
-          h('button', { class: 'btn small ghost', onclick: () => { nameIn.value = p.name; nameIn.focus(); form.scrollIntoView({ behavior: 'smooth', block: 'center' }); } }, 'I tried this, log it'),
+          h('button', { class: 'btn small ghost', onclick: () => { nameIn.value = p.name; nameIn.focus(); form.scrollIntoView({ behavior: 'smooth', block: 'center' }); } }, 'Log it'),
         )));
         picks.append(grid);
       },
@@ -98,7 +96,7 @@ export function buildBar(body) {
   body.append(h('h3', {}, 'Log a bottle'));
   let rating = 4;
   const nameIn = h('input', { placeholder: 'e.g. Yamazaki 12', maxlength: 60, required: true });
-  const notesIn = h('textarea', { rows: 2, placeholder: 'What did it taste like? Would you get it again?', maxlength: 400 });
+  const notesIn = h('textarea', { rows: 2, placeholder: 'Notes', maxlength: 400 });
   const glasses = h('div', { class: 'glasses' });
   function drawGlasses() {
     glasses.innerHTML = '';
@@ -115,16 +113,13 @@ export function buildBar(body) {
       pour();
       drawShelf(id);
       nameIn.value = ''; notesIn.value = ''; rating = 4; drawGlasses();
-      bubble.textContent = `${name}. Good choice. I put your name on it.`;
       shelfWrap.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      toast('Added to your shelf. Something new is growing in the garden too.');
     },
   },
     h('label', {}, 'Bottle', nameIn),
-    h('label', {}, 'How good', glasses),
+    h('label', {}, 'Rating', glasses),
     h('label', { class: 'full' }, 'Notes', notesIn),
     h('div', { class: 'full' }, h('button', { class: 'btn', type: 'submit', style: 'background:#ffb35c;color:#23160d' }, 'Put it on the shelf')),
   );
   body.append(form);
-  body.append(h('p', { class: 'note', style: 'margin-top:18px;opacity:.8' }, "the bartender doesn't card you btw. you're 60."));
 }
