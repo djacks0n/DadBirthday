@@ -73,6 +73,24 @@ export function buildKonbini(body, app) {
       h('button', { class: 'btn ghost', onclick: () => file.click() }, 'Load'),
       file,
     ),
+    h('h4', { style: 'margin-top:16px' }, 'Reset'),
+    h('div', { class: 'row' },
+      // back to the welcome screen, keeps his shelf and everything
+      h('button', {
+        class: 'btn ghost', onclick: () => {
+          S.update(s => { s.seenBirthday = false; });
+          location.reload();
+        },
+      }, 'Show welcome again'),
+      // wipes everything, like opening it for the first time
+      h('button', {
+        class: 'btn ghost', style: 'color:#c0302a', onclick: () => {
+          if (!confirm('Erase everything and start over?')) return;
+          S.resetAll();
+          location.reload();
+        },
+      }, 'Start over'),
+    ),
   ));
 
   body.append(grid);
