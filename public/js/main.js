@@ -194,7 +194,8 @@ const intro = document.getElementById('intro');
 const introContent = document.getElementById('intro-content');
 const firstTime = !S.get().seenBirthday;
 if (firstTime) {
-  introContent.innerHTML = `<div class="lantern">60</div><h1>${BIRTHDAY.line1}</h1><h2>${BIRTHDAY.line2}</h2><p class="body">${BIRTHDAY.body}</p><div class="sign">${BIRTHDAY.sign}</div>`;
+  introContent.innerHTML = `<h1 style="margin-bottom:28px">Happy birthday</h1>`;
+  document.querySelector('.intro-small')?.remove();
 } else {
   const hi = ['still raining. come on in.', 'your stool is open.', 'welcome back.', 'the rain never stopped.'];
   introContent.innerHTML = `<div class="jp-title">雨音通り</div><h2 style="margin-top:6px">${hi[Math.floor(Math.random() * hi.length)]}</h2>`;
