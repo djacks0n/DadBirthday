@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>雨音通り · Amaoto Street</title>
+  <meta name="description" content="A rainy street for Dad's 60th.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='52' r='34' fill='%23ff3a1e'/><text x='50' y='66' font-size='40' text-anchor='middle' fill='%23200'>60</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=DotGothic16&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script type="importmap">
+    { "imports": { "three": "./vendor/three/build/three.module.js" } }
+  </script>
+</head>
+<body>
+  <canvas id="street"></canvas>
+
+  <!-- top left: where you are and what the weather's doing -->
+  <div id="hud" class="hidden">
+    <div class="hud-title"><span class="jp">雨音通り</span> <span class="en">Amaoto Street</span></div>
+    <div id="hud-time"></div>
+  </div>
+
+  <div id="hud-right" class="hidden">
+    <button id="btn-mute" class="round" title="Sound">♪</button>
+    <button id="btn-help" class="round" title="How to walk around">?</button>
+  </div>
+
+  <div id="prompt" class="hidden"></div>
+
+  <nav id="places" class="hidden"></nav>
+
+  <div id="help" class="hidden">
+    <p><b>W A S D</b> or the <b>arrow keys</b> to walk. Hold <b>Shift</b> to go faster.</p>
+    <p><b>Click and drag</b> to look around.</p>
+    <p><b>Click a shop</b> (or a button at the bottom) and you'll walk there and go in.</p>
+    <p><b>Esc</b> leaves a shop.</p>
+    <button class="btn" id="help-ok">Got it</button>
+  </div>
+
+  <div id="intro">
+    <div class="intro-card">
+      <div id="intro-content"></div>
+      <button id="intro-go" class="btn big">Walk in</button>
+      <p class="intro-small">Sound on is better. You can mute it in the top right.</p>
+    </div>
+  </div>
+
+  <div id="panel" class="hidden" role="dialog" aria-modal="true">
+    <div class="panel-inner">
+      <header class="panel-head">
+        <button class="back" id="panel-back">← back to the street</button>
+        <div class="panel-title"><span class="jp" id="panel-jp"></span><span class="en" id="panel-en"></span></div>
+      </header>
+      <div id="panel-body"></div>
+    </div>
+  </div>
+
+  <div id="toast" class="hidden"></div>
+
+  <noscript>This needs JavaScript turned on, Dad.</noscript>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
