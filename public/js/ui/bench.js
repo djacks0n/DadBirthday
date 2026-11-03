@@ -14,7 +14,7 @@ export function buildBench(body) {
 
   const win = h('div', { class: 'window' }, h('div', { class: 'idle' }, h('div', {},
     h('div', { style: 'font-size:22px;font-weight:700;margin-bottom:6px' }, 'Sit down. Pick somewhere.'),
-    h('div', { class: 'note', style: 'color:#9fd6ff' }, "every pin is a rain walk. no talking, just rain and people with umbrellas"),
+    h('div', { class: 'note', style: 'color:#9fd6ff' }, "every pin is a rain walk. no talking, just rain and people with umbrellas. tokyo has the most"),
   )), h('div', { class: 'drops' }));
   const list = h('div', { class: 'walks' });
   const label = h('div', { style: 'font-size:14px;margin-top:10px;opacity:.85;min-height:20px' });
@@ -46,8 +46,12 @@ export function buildBench(body) {
     const c = cities[i];
     map.querySelectorAll('.pin').forEach(p => p.classList.toggle('on', +p.dataset.i === i));
     list.innerHTML = '';
-    list.append(h('div', { style: 'font-weight:700;font-size:15px' }, c.city));
-    c.walks.forEach(w => list.append(h('button', { class: 'walk', 'data-id': w.id, onclick: () => play(w) }, h('img', { src: ytThumb(w.id), alt: '', loading: 'lazy' }), h('span', { style: 'font-size:13.5px' }, w.sub))));
+    list.append(h('div', { style: 'font-weight:700;font-size:15px' }, c.city + (c.walks.length > 2 ? `  ·  ${c.walks.length} walks` : '')));
+    let area = null;
+    c.walks.forEach(w => {
+      if (w.area && w.area !== area) { area = w.area; list.append(h('div', { class: 'area' }, area)); }
+      list.append(h('button', { class: 'walk', 'data-id': w.id, onclick: () => play(w) }, h('img', { src: ytThumb(w.id), alt: '', loading: 'lazy' }), h('span', { style: 'font-size:13.5px' }, w.sub)));
+    });
     play(c.walks[0]);
   }
 
@@ -56,7 +60,11 @@ export function buildBench(body) {
     p.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') pickCity(+p.dataset.i); });
   });
 
-  const random = h('button', { class: 'btn ghost', style: 'margin-top:10px', onclick: () => pickCity(Math.floor(Math.random() * cities.length)) }, 'Surprise me');
+  const tokyoI = cities.findIndex(c => c.city === 'Tokyo');
+  const random = h('div', { style: 'display:flex;gap:8px;flex-wrap:wrap;margin-top:10px' },
+    h('button', { class: 'btn', style: 'background:#9fd6ff;color:#0a1220', onclick: () => pickCity(tokyoI) }, 'Tokyo in the rain'),
+    h('button', { class: 'btn ghost', onclick: () => pickCity(Math.floor(Math.random() * cities.length)) }, 'Surprise me'),
+  );
 
   body.append(h('div', { class: 'bench-grid' },
     h('div', {}, map, random, list),

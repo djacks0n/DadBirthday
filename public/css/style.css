@@ -227,7 +227,8 @@ h3 { margin: 22px 0 10px; font-size: 16px; letter-spacing: .04em; }
 @keyframes pulse { from { opacity: .9; transform: scale(.4); } to { opacity: 0; transform: scale(1.8); } }
 .japan .pin text { fill: #dbe7f5; font-size: 21px; font-weight: 700; paint-order: stroke; stroke: #0a1220; stroke-width: 5px; }
 .japan .pin.on circle.dot { fill: #ffd36a; }
-.walks { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+.walks { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; max-height: 420px; overflow: auto; padding-right: 4px; }
+.walks .area { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: #9fd6ff; margin-top: 6px; }
 .walk { display: flex; gap: 10px; align-items: center; background: #13233a; border: 1px solid #24405f; border-radius: 6px; padding: 6px; text-align: left; }
 .walk img { width: 110px; aspect-ratio: 16/9; object-fit: cover; border-radius: 3px; }
 .walk.on { border-color: #9fd6ff; }

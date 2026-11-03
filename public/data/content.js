@@ -123,8 +123,20 @@ export const CAMP_VIDEOS = [
 
 // rain walks for the bench map
 export const RAIN_WALKS = [
-  { city: 'Tokyo', sub: 'Shinjuku back alleys at night', lat: 35.69, lon: 139.70, id: 'K1_mxPL3rpw' },
-  { city: 'Tokyo', sub: 'Record heavy rain', lat: 35.69, lon: 139.70, id: 'UGSWyoR7QpM' },
+  // tokyo gets the most because that's the one you watch the most
+  { city: 'Tokyo', area: 'Shinjuku', sub: 'Back alleys at night', lat: 35.69, lon: 139.70, id: 'K1_mxPL3rpw' },
+  { city: 'Tokyo', area: 'Shinjuku', sub: 'Kabukicho on a rainy night', lat: 35.69, lon: 139.70, id: 'KBiRbwhbPpo' },
+  { city: 'Tokyo', area: 'Shibuya', sub: 'Shibuya to Harajuku, rainy night', lat: 35.69, lon: 139.70, id: 'vvWShDvADgU' },
+  { city: 'Tokyo', area: 'Shibuya', sub: 'Shibuya to Naka-Meguro, rainy night', lat: 35.69, lon: 139.70, id: 'gKjzJYmDhxo' },
+  { city: 'Tokyo', area: 'Shibuya', sub: 'Typhoon morning, heavy rain', lat: 35.69, lon: 139.70, id: 'hkiV4FDR2IU' },
+  { city: 'Tokyo', area: 'Asakusa', sub: 'Asakusa on a rainy night', lat: 35.69, lon: 139.70, id: 'oz_5SUICD7M' },
+  { city: 'Tokyo', area: 'Asakusa', sub: 'Rainy evening at Senso-ji', lat: 35.69, lon: 139.70, id: 'xpVMp1WRwI0' },
+  { city: 'Tokyo', area: 'Ginza', sub: 'Heavy rain at night', lat: 35.69, lon: 139.70, id: 'NY5w8S1uKO8' },
+  { city: 'Tokyo', area: 'Ueno and Yanaka', sub: 'Yanaka Ginza to Ueno, rainy night', lat: 35.69, lon: 139.70, id: 'Ab78G8VIW3U' },
+  { city: 'Tokyo', area: 'Akihabara', sub: 'Drizzle at night', lat: 35.69, lon: 139.70, id: '4TBrF66OSgw' },
+  { city: 'Tokyo', area: 'Shimokitazawa', sub: 'Rain walk', lat: 35.69, lon: 139.70, id: 'ZE4lmwHKtCs' },
+  { city: 'Tokyo', area: 'All over', sub: 'Across Tokyo at night in the rain', lat: 35.69, lon: 139.70, id: 'hfx2Cgd1AUw' },
+  { city: 'Tokyo', area: 'All over', sub: 'Record heavy rain', lat: 35.69, lon: 139.70, id: 'UGSWyoR7QpM' },
   { city: 'Kyoto', sub: 'Rainy night walk', lat: 35.01, lon: 135.77, id: '2MH3YdtA-yU' },
   { city: 'Kyoto', sub: 'Higashiyama in light rain', lat: 35.01, lon: 135.77, id: 'KDEmWy30Vn0' },
   { city: 'Osaka', sub: 'Shinsaibashi and Namba', lat: 34.67, lon: 135.50, id: 'BfWIrHRAsxA' },

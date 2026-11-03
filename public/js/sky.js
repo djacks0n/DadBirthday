@@ -40,7 +40,7 @@ export function applySky(env, n, late) {
   world.windowMats.forEach(m => { m.emissiveIntensity = m.userData.base * (late ? 0.45 : 0.35 + n * 0.65); });
   world.lights.forEach(l => { l.intensity = l.userData.base * (0.4 + n * 0.6); });
   if (bloom) bloom.strength = 0.25 + n * 0.6;
-  people?.setCount(late ? 5 : Math.round(10 + (1 - Math.abs(n - 0.6)) * 6));
+  people?.setCount(late ? 9 : Math.round(24 + (1 - Math.abs(n - 0.6)) * 10));
 }
 
 // real weather from open-meteo (free, no key). returns { raining, heavy, temp, code } or null

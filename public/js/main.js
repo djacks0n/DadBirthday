@@ -45,7 +45,7 @@ scene.add(hemi);
 
 const world = buildStreet(scene, renderer);
 const rain = makeRain(scene);
-const people = makePeople(scene, 18);
+const people = makePeople(scene, 34);
 const controls = makeControls(camera, canvas);
 
 const composer = new EffectComposer(renderer);
